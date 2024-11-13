@@ -13,6 +13,23 @@
   outline: none;
   border: none;
 }
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height to center vertically */
+  width: 100vw; /* Full viewport width to center horizontally */
+  position: fixed; /* Fix the loader in the middle of the screen */
+  top: 0;
+  left: 0;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Optional: semi-transparent background */
+  z-index: 9999; /* Ensure the loader is on top of other elements */
+}
 
 :root {
   --color-bg: #e1e1e1;
