@@ -1,15 +1,28 @@
+import { getDatabase, ref, onValue } from "firebase/database";
+import { useEffect, useState } from "react";
 function Portofolio() {
+  const [porto, setPorto] = useState({});
+
+  useEffect(() => {
+    const db = getDatabase();
+    const portoRef = ref(db, "porto");
+
+    onValue(portoRef, (snapshot) => {
+      const data = snapshot.val();
+      setPorto(data);
+    });
+  }, []);
   return (
     <section className="portfolio" id="portfolio">
       <div className="title">
         <h2>
-          Latest <span>Project</span>
+          {porto.title} <span>{porto.subTitle}</span>
         </h2>
       </div>
       <div className="container portfolio-container">
         <div className="portfolio-buttons">
           <button className="btn portfolio-tab active" onclick="tabOpen('all')">
-            Web and App
+            {porto.wp}
           </button>
         </div>
         <div className="tab-content active-content" id="all">
