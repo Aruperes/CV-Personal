@@ -1,20 +1,28 @@
+import { getDatabase, ref, onValue } from "firebase/database";
+import { useEffect, useState } from "react";
 function Home() {
+  const [home, setHome] = useState({});
+
+  useEffect(() => {
+    const db = getDatabase();
+    const homeRef = ref(db, "home");
+
+    onValue(homeRef, (snapshot) => {
+      const data = snapshot.val();
+      setHome(data);
+    });
+  }, []);
   return (
     <section className="home" id="home">
       <div className="container home-container">
         <div className="left">
-          <h3>Hello, It's Me</h3>
+          <h3>{home.title}</h3>
           <h1>
             <span>Revando</span>
           </h1>
+          {home.subTitle}
           {/* you can edit `multiple-text` into ( /assets/js/script.js ), then search and edit `strings` in TYPED Js  */}
           <p>
-            I’m a 3rd-year Informatics student at Klabat University, deeply
-            interested in both mobile and web application development. I am
-            always excited to learn new technologies and enhance my skills in
-            building responsive and efficient applications. My goal is to bridge
-            innovative ideas with practical solutions to deliver impactful
-            software.
             <span className="multiple-text" />
           </p>
           <div className="social-icons-container">

@@ -4,6 +4,7 @@ import Contact from "./components/contact";
 import Portofolio from "./components/portofolio";
 import Services from "./components/services";
 import Container from "./components/container";
+import "./config/Firebase";
 
 function App() {
   return (

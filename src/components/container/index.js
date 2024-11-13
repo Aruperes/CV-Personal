@@ -1,9 +1,23 @@
+import { getDatabase, ref, onValue } from "firebase/database";
+import { useEffect, useState } from "react";
 function Container() {
+  const [Container, setContainer] = useState({});
+
+  useEffect(() => {
+    const db = getDatabase();
+    const headerRef = ref(db, "container");
+
+    onValue(headerRef, (snapshot) => {
+      const data = snapshot.val();
+      setContainer(data);
+    });
+  }, []);
   return (
     <nav>
       <div className="container nav-container">
         <a href="index.html" className="logo">
-          Porto<span>folio</span>
+          {Container.title}
+          <span>{Container.subTitle}</span>
         </a>
         <ul className="navlist">
           <li>
